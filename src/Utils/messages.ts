@@ -263,8 +263,7 @@ export const generateWAMessageContent = async(
 		}
 
 		m.extendedTextMessage = extContent
-	}
-	else if('contacts' in message) {
+	} else if('contacts' in message) {
 		const contactLen = message.contacts.contacts.length
 		if(!contactLen) {
 			throw new Boom('require atleast 1 contact', { statusCode: 400 })
@@ -277,11 +276,9 @@ export const generateWAMessageContent = async(
 		}
 	} else if('location' in message) {
 		m.locationMessage = WAProto.LocationMessage.fromObject(message.location)
-	} 
-	else if('react' in message) {
+	} else if('react' in message) {
 		m.reactionMessage = WAProto.ReactionMessage.fromObject(message.react)
-	}
-	else if('delete' in message) {
+	} else if('delete' in message) {
 		m.protocolMessage = {
 			key: message.delete,
 			type: WAProto.ProtocolMessage.ProtocolMessageType.REVOKE
